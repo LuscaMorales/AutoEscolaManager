@@ -1,0 +1,67 @@
+.env
+# --- Arquivos de cache e compilação ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Ambiente virtual ---
+venv/
+.env/
+env/
+.venv/
+ENV/
+
+# --- Arquivos de configuração locais ---
+*.env
+*.ini
+*.cfg
+*.local
+*.log
+
+# --- Dados temporários ---
+*.sqlite3
+*.db
+*.bak
+*.tmp
+
+# --- IDEs e editores ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Dependências baixadas ---
+pip-wheel-metadata/
+.eggs/
+*.egg
+*.egg-info/
+dist/
+build/
+develop-eggs/
+downloads/
+
+# --- Testes e cobertura ---
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints/
+
+# --- macOS e Windows ---
+.DS_Store
+Thumbs.db
+
+# --- Docker ---
+*.pid
+*.log
+docker-compose.override.yml
+
+# --- Outros ---
+# Arquivos que você não quer subir (ex: dados sensíveis)
+secrets.json
+*.pem
+

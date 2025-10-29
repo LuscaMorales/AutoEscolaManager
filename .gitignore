@@ -39,6 +39,11 @@ dist/
 build/
 develop-eggs/
 downloads/
+bin/
+lib/
+share/
+lib64/
+include/
 
 # --- Testes e cobertura ---
 .pytest_cache/
@@ -47,6 +52,7 @@ htmlcov/
 .tox/
 .nox/
 coverage.xml
+
 
 # --- Jupyter Notebooks ---
 .ipynb_checkpoints/

@@ -33,6 +33,36 @@ def cadastrar_gestor(usuario, senha, cpf, nome_completo):
     except mysql.connector.Error as erro:
         messagebox.showerror("Erro", f"Erro ao cadastrar: {erro}")
 
+def cadastrar_inst(nome, cpf, cat):
+    if not nome or not cpf or not cat:
+        messagebox.showwarning("Atenção", "Preencha todos os campos!")
+        return
+    try:
+        conn = conectar_banco()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO instrutor (nome, cpf, categoria) VALUES (%s, %s, %s)", (nome, cpf, cat))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        messagebox.showinfo("Cadastro", f"Instrutor '{nome}' cadastrado com sucesso!")
+    except mysql.connector.Error as erro:
+        messagebox.showerror("Erro", f"Erro ao cadastrar: {erro}")
+
+def cadastrar_veic(nome, placa):
+    if not nome or not placa:
+        messagebox.showwarning("Atenção", "Preencha todos os campos!")
+        return
+    try:
+        conn = conectar_banco()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO veiculo (nome, placa) VALUES (%s, %s)", (nome, placa))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        messagebox.showinfo("Cadastro", f"Veiculo '{nome}' cadastrado com sucesso!")
+    except mysql.connector.Error as erro:
+        messagebox.showerror("Erro", f"Erro ao cadastrar: {erro}")
+
 
 def datetime_converter(data_str, hora_str):
     """
@@ -287,3 +317,30 @@ def editar_agendamento(tree):
     btn_alterar = ctk.CTkButton(janela_edicao, text="Fazer alterações", width=200,
                                 command=lambda: update_aula())
     btn_alterar.pack(pady=20)
+
+def atualizar_registros():
+    try:
+        conn = conectar_banco()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT id, nome, email FROM aluno ORDER BY nome")
+        alunos = cursor.fetchall()
+        alunos_dict = {aluno["nome"]: {
+            "id":aluno["id"],
+            "email":aluno["email"]}
+            for aluno in alunos}
+
+        cursor.execute("SELECT id, nome FROM instrutor ORDER BY nome")
+        instrutores = cursor.fetchall()
+        inst_dict = {instrutor["nome"]: instrutor["id"] for instrutor in instrutores}
+
+        cursor.execute("SELECT id, nome FROM veiculo ORDER BY nome")
+        veiculos = cursor.fetchall()
+        veic_dict = {veic["nome"]: veic["id"] for veic in veiculos}
+
+        cursor.close()
+        conn.close()
+        return alunos_dict, inst_dict, veic_dict
+    except mysql.connector.Error as erro:
+        messagebox.showerror("Erro", f"Erro ao carregar nomes dos alunos: {erro}")
+        return null
+

@@ -88,16 +88,16 @@ def tela_graficos():
         fig, axs = plt.subplots(2, 2, figsize=(10, 8))
 
         # Gráfico 1 — Turnos
-        df_turno.plot(kind="bar", x="turno", y="total", ax=axs[0, 0], color="skyblue", legend=False)
+        df_turno.plot(kind="bar", y="total", ax=axs[0, 0], color="skyblue", legend=False)
         axs[0, 0].set_title("Preferência por Turno")
         axs[0, 0].set_ylabel("Quantidade")
 
         # Gráfico 2 — Veículos
-        df_veiculo.plot(kind="bar", x="veiculo", y="total", ax=axs[0, 1], color="orange", legend=False)
+        df_veiculo.plot(kind="bar", y="total", ax=axs[0, 1], color="orange", legend=False)
         axs[0, 1].set_title("Preferência por Veículo")
 
         # Gráfico 3 — Instrutores
-        df_instrutor.plot(kind="bar", x="instrutor", y="total", ax=axs[1, 0], color="lightgreen", legend=False)
+        df_instrutor.plot(kind="bar", y="total", ax=axs[1, 0], color="lightgreen", legend=False)
         axs[1, 0].set_title("Preferência de Alunos por Instrutor")
 
         # Gráfico 4 — Categorias

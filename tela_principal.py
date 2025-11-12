@@ -41,7 +41,7 @@ def abrir_tela_principal():
     alunos_dict, inst_dict, veic_dict = ctl.atualizar_registros()
     def atualizar_comboboxes():
         global alunos_dict, inst_dict, veic_dict
-        alunos_dict, inst_dict, veic_dict = ctl.atualizar_registros()
+        alunos_dict, inst_dict, veic_dict  = ctl.atualizar_registros()
         entry_ag_nome.configure(values=list(alunos_dict.keys()))
         entry_ag_inst.configure(values=list(inst_dict.keys()))
         entry_ag_veic.configure(values=list(veic_dict.keys()))
@@ -252,7 +252,7 @@ def abrir_tela_principal():
     btn_graficos.pack(pady=20)
 
     btn_agendar = ctk.CTkButton(frame_agendar, text="Agendar Aula", width=200, command=lambda:
-    (agendar_aula(), ctl.buscar_aulas(tree)))
+    (agendar_aula(), ctl.buscar_aulas(tree), atualizar_comboboxes()))
     btn_agendar.pack(pady=20)
 
     # ======= ABA 5 - ENVIAR AULAS =======
@@ -276,7 +276,7 @@ def abrir_tela_principal():
     btn_enviar = ctk.CTkButton(frame_envio, text="Enviar", width=120)
     btn_enviar.grid(row=5, column=0, padx=10, pady=5)
     btn_enviar.configure(command=lambda:
-    ctl.agendamentos_aluno(entry_ag_nomeEv.get(), alunos_dict[entry_ag_nomeEv.get()], entry_data_inicialEv.get(), entry_data_finalEv.get()))
+    ctl.agendamentos_aluno(entry_ag_nomeEv.get(), entry_data_inicialEv.get(), entry_data_finalEv.get()))
 
 
 

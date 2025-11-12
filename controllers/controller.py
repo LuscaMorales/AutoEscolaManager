@@ -76,8 +76,9 @@ def datetime_converter(data_str, hora_str):
         raise ValueError("Formato inválido. Use data DD/MM/AAAA e hora HH:MM.")
 
 
-def agendamentos_aluno(nome_aluno, alunodados, data_inicial, data_final):
-
+def agendamentos_aluno(nome_aluno, data_inicial, data_final):
+    alunos_dict, inst_dict, veic_dict = atualizar_registros()
+    alunodados = alunos_dict[nome_aluno]
     data_ini_sql = datetime.strptime(data_inicial, "%d/%m/%Y").strftime("%Y-%m-%d")
     data_fim_sql = datetime.strptime(data_final, "%d/%m/%Y").strftime("%Y-%m-%d")
 
@@ -144,6 +145,7 @@ def enviar_email(email_aluno, nome_aluno, agendamentos, porta=587):
         server.sendmail(remetente, email_aluno, mensagem.as_string())
         server.quit()
         print(f"E-mail enviado com sucesso para {email_aluno}!")
+        messagebox.showinfo("Envio Realizado", f"Aulas enviadas para '{email_aluno}' com sucesso!")
     except Exception as e:
         print(f"Erro ao enviar e-mail: {e}")
 
